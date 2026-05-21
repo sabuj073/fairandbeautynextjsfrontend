@@ -1,0 +1,95 @@
+@font-face {
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-UltraLight-XCKNRGSD.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 300;
+    font-display: swap;
+    font-style: italic;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-UltraLightItalic-OBKRKZNK.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-Regular-KNTJFPJZ.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-Italic-3DSXW7U3.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-Medium-WZSOG4HA.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-MediumItalic-MICE6MKX.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-DemiBold-CQZ3TDC7.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 600;
+    font-display: swap;
+    font-style: italic;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-DemiBoldItalic-I74O52KR.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-Bold-DLZA2RXL.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 700;
+    font-display: swap;
+    font-style: italic;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-BoldItalic-H6CKXKOD.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 900;
+    font-display: swap;
+    font-style: normal;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-Heavy-RYCATHOG.ttf)format("truetype")
+}
+
+@font-face {
+    font-weight: 900;
+    font-display: swap;
+    font-style: italic;
+    font-family: AvenirNext;
+    src: url(https://ohsogo.com/build/_assets/AvenirNext-HeavyItalic-MIBPL33T.ttf)format("truetype")
+}
