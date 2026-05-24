@@ -29,8 +29,8 @@ export default async function ShopByLook() {
   const data = await getFlashIngredients() as any;
 
   return (
-    <Container>
-      <div className="mb-[70px] pt-2">
+    <Container className="home-section">
+      <div>
         <TranslateHeading translateKey={"shop_by_looks"} />
         <div className="flex  gap-2 pt-4  flex-col lg:flex-row  ">
           <div className="flex justify-center">

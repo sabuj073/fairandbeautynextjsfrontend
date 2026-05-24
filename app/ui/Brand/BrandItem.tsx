@@ -5,6 +5,13 @@ import Link from "next/link";
 import React, { useRef, useEffect, useState } from "react";
 import { BASE_URL } from "@/app/config/api";
 
+const imageSrc = (src?: string | null) => {
+  if (!src) return "/fallback-image.png";
+  if (src.startsWith("http://") || src.startsWith("https://")) return src;
+  if (src.startsWith("/")) return `${BASE_URL}${src}`;
+  return `${BASE_URL}/public/${src}`;
+};
+
 export default function BrandItem({ item, size }: { item: any; size: "large" | "small" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -39,7 +46,7 @@ export default function BrandItem({ item, size }: { item: any; size: "large" | "
         }`}
       >
         <Image
-          src={`${BASE_URL}/public/${item.logo}`}
+          src={imageSrc(item.logo)}
           width={width}
           height={height}
           alt={item.name}

@@ -13,7 +13,7 @@ export default function ResonShop() {
     const reson_to_shop_images = get_setting(settingValue, 'reson_to_shop_images')?.value || [];
 
     return (
-        <div className="container pb-[25px] md:pb-[70px] mx-auto px-2 sm:px-2 md:px-0 ">
+        <div className="container home-section mx-auto">
             <div style={{background: "linear-gradient(180deg, #139804 0%, #063b00 100%)"}} className='reason rounded-[16px] py-[10px] md:p-[20px] sm:p-[35px] flex flex-col gap-1 md:gap-6 ' >
                 <TranslateHeading isFromReason={true} translateKey={"reason_to_shop"} className="text-white" />
                 <div className="reason_item">

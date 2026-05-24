@@ -35,7 +35,7 @@ export default function ConcernCategoryProduct({
   const [products, setProducts] = useState<any[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryFeatured | null>();
   const [loading, setLoading] = useState(false);
-  const [activeStaticCategory, setActiveStaticCategory] = useState<number | null>(null);
+  const [activeConcern, setActiveConcern] = useState<CategoryFeatured | null>(null);
   const [carouselApi, setCarouselApi] = useState<any>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [visibleSlides, setVisibleSlides] = useState(4);
@@ -49,12 +49,17 @@ export default function ConcernCategoryProduct({
     // Reset loaded indexes when category changes
     setLoadedIndexes(new Set());
     setCurrentSlide(0);
+    carouselApi?.scrollTo?.(0);
   };
 
   useEffect(() => {
     if (category && category?.length > 0) {
-      handleSelectCategory(category[0].id);
-      setCategoryData(category[0]);
+      const firstCategory = category[0];
+      const firstConcern = firstCategory.children?.[0] ?? null;
+
+      setCategoryData(firstCategory);
+      setActiveConcern(firstConcern);
+      handleSelectCategory(firstConcern?.id ?? firstCategory.id);
     }
   }, [category]);
 
@@ -113,15 +118,11 @@ export default function ConcernCategoryProduct({
 
   const { start, end } = getVisibleRange();
 
-  const staticSubCategories = [
-    { id: 1, name: "Acne" },
-    { id: 2, name: "Hyperpigmentation" },
-    { id: 3, name: "Premature Skin" }
-  ];
+  const concernFilters = categoryData?.children ?? [];
 
-  const handleStaticCategoryClick = (id: number) => {
-    setActiveStaticCategory(activeStaticCategory === id ? null : id);
-    // You can add additional logic here if needed when static categories are clicked
+  const handleConcernClick = (item: CategoryFeatured) => {
+    setActiveConcern(item);
+    handleSelectCategory(item.id);
   };
 
   return (
@@ -139,8 +140,9 @@ export default function ConcernCategoryProduct({
                       <Button
               onClick={() => {
                 setCategoryData(item);
-                handleSelectCategory(item.id);
-                setActiveStaticCategory(null); // Reset static category selection
+                const firstConcern = item.children?.[0] ?? null;
+                setActiveConcern(firstConcern);
+                handleSelectCategory(firstConcern?.id ?? item.id);
               }}
               key={item.id}
               isActive={categoryData?.id === item.id}
@@ -167,17 +169,17 @@ export default function ConcernCategoryProduct({
         <Carousel opts={{ align: "center" }} className="w-full">
             <CarouselContent className="ml-0 md:justify-center">
               {
-                staticSubCategories.map((item) => (
+                concernFilters.map((item) => (
                     <CarouselItem
                       key={item.id}
                       className="pl-0 lg:pl-2 basis-auto"
                     >
                       <Button
-            onClick={() => handleStaticCategoryClick(item.id)}
+            onClick={() => handleConcernClick(item)}
             key={item.id}
-            isActive={activeStaticCategory === item.id}
+            isActive={activeConcern?.id === item.id}
             className={`inline-block py-[6px] sm:py-[10px] px-[30px] sm:px-[20px] border-[1px] mr-1 rounded-[8px] font-bold transition duration-300 ease-in-out uppercase text-[12px] bg-transparent ${
-              activeStaticCategory === item.id
+              activeConcern?.id === item.id
                 ? "bg-arival text-white"
                 : "!text-neutral-black hover:!text-white"
             }`}
@@ -238,7 +240,7 @@ export default function ConcernCategoryProduct({
           {categoryData && (
             <div className="mt-0 flex justify-center">
               <a
-                href={`/category/${categoryData.slug || categoryData.id}`}
+                href={`/category/${activeConcern?.slug || categoryData.slug || activeConcern?.id || categoryData.id}`}
                 className="flex justify-center items-center gap-2 py-2 px-5 bg-white text-white text-sm hover:bg-[linear-gradient(180deg,#139804_0%,#063b00_100%)] hover:text-white border-[linear-gradient(180deg,#139804_0%,#063b00_100%)] border-[1px] rounded-[8px] bg-[linear-gradient(180deg,#139804_0%,#063b00_100%)] transition"
               >
                 View All

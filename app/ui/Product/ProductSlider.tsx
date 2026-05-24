@@ -94,7 +94,7 @@ export default function ProductSlider({
     }, [pathName])
 
     return (
-        <div className={clsx("w-full pb-[18px] md:pb-[66px] sm:px-2 md:px-0", ContainerClassName)}>
+        <div className={clsx("home-section", ContainerClassName)}>
             <div className={clsx(`arrival_section bg-[#DFE8DE] md:mx-0  ${isHomepage ? 'mx-1' : 'mx-0'} rounded-lg flex flex-col gap-[15px] sm:gap-6 py-[20px] md:py-[37px] md:px-[10px] sm:px-4`, className)}>
                 <TranslateHeading translateKey={translateKey} />
                 <div className={`${isHomepage && 'px-1'}`}>

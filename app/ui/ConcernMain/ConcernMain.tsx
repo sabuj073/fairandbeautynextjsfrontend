@@ -8,7 +8,7 @@ export default async function ConcernMain() {
 
 
     return (
-        <div className="pb-[18px] md:pb-[65px] w-full ">
+        <div className="home-section">
             <div className='concern_section  flex flex-col gap-[15px] sm:gap-6   rounded-[26px]  bg-white py-[20px] md:py-[37px] px-[0px] ' >
                 <div className='text-[26px] flex flex-col w-full items-center justify-center gap-1'>
                     <h3>WHAT DO YOU HAVE</h3>

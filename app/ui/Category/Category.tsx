@@ -16,7 +16,7 @@ const Category: React.FC<PropType> = (props) => {
     const { data, title, className } = props
     const formattedData = transformData(data.data);
     return (
-        <div className={cn("container block md:hidden mb-7 mt-5 sm:pb-[14px] md:pb-[47px] mx-auto px-2 sm:px-2 md:px-4 lg:px-6 xl:px-8 ", className)}>
+        <div className={cn("container block md:hidden home-section mx-auto", className)}>
             {
                 title && <TranslateHeading translateKey="trending_category" />
             }

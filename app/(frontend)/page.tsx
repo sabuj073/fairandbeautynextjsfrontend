@@ -30,6 +30,8 @@ import Serums from "../ui/Serums/Serums";
 import LastView from "../ui/LastViewed/LastView";
 import SkinAnalyzerEntryCard from "../ui/SkinAnalyzer/SkinAnalyzerEntryCard";
 import HomeProductPills from "../ui/HomeProductPills/HomeProductPills";
+import TopValueCombos from "../ui/TopValueCombos/TopValueCombos";
+import Recommendation from "../ui/Recommendation/Recommendation";
 
 // export async function getMenu(): Promise<any> {
 //   const lang = cookies().get('lang')?.value || 'en';
@@ -75,27 +77,31 @@ export default async function Page() {
       {show("category_wrapper") && <CategoryWrapper />}
       {show("offer") && <Offer />}
       {show("skin_analyzer") && (
-        <SkinAnalyzerEntryCard className="px-4 md:px-0 my-5 md:my-8" />
+        <SkinAnalyzerEntryCard className="home-section" />
       )}
       {show("reason_shop") && <ResonShop />}
       {show("home_product_pills") && <HomeProductPills />}
+      {show("top_value_combos") && <TopValueCombos />}
       {show("trending") && <Trending />}
-      {show("banner_new_1") && <BannerNew />}
+      {show("banner_new_1") && <BannerNew position={1} />}
       {show("featured") && <Featured />}
       {show("pre_order") && <PreOrder />}
       {show("best_selling") && <BestSelling />}
       {show("arrival") && <ArriVal />}
-      {show("banner_new_2") && <BannerNew />}
+      {show("banner_new_2") && <BannerNew position={2} />}
       {show("serums") && <Serums />}
       {show("concern") && <Concern />}
       {show("concern_main") && <ConcernMain />}
+      {show("recommendation") && <Recommendation />}
       {show("flash_deal") && <FlashDeal />}
       {show("ingredients") && <Ingredients />}
       {show("brand") && <Brand />}
       {show("shop_by_look") && <ShopByLook />}
-      {show("banner_new_3") && <BannerNew />}
+      {show("banner_new_3") && <BannerNew position={3} />}
+      {show("banner_new_4") && <BannerNew position={4} />}
+      {show("banner_new_5") && <BannerNew position={5} />}
+      {show("banner_new_6") && <BannerNew position={6} />}
       {show("customer_review") && <CustomerReview />}
-      {/* <Recommendation /> */}
       {/* Blog section removed - link still works at /blog */}
       {show("last_view") && <LastView />}
 

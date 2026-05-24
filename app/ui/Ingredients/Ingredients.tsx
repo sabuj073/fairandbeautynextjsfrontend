@@ -26,7 +26,7 @@ export default async function Ingredients() {
     const data = await getFlashIngredients();
 
     return (
-        <Container className='pb-[18px] md:pb-[64px]'>
+        <Container className='home-section'>
             <div className='ingredients flex flex-col md:gap-6 py-[20px] md:py-[37px]' >
                 <TranslateHeading translateKey={"ingredints"} />
                 <Carousel

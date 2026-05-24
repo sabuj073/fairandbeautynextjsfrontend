@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .home-section {
+    @apply w-full px-4 md:px-0 my-5 md:my-8;
+  }
+}
+
 
 @font-face {
   font-weight: 300;
@@ -905,9 +911,85 @@ html {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: blue;
+    border: 0;
+    padding: 0;
     border-radius: 50%;
     cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+
+  .look-hotspot {
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 0;
+    padding: 0;
+    border-radius: 50%;
+    appearance: none;
+    background: rgba(160, 32, 240, 0.2);
+    box-shadow: 0 0 0 3px rgba(160, 32, 240, 0.25);
+    cursor: pointer;
+    line-height: 0;
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .look-hotspot::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border: 2px solid rgba(160, 32, 240, 0.75);
+    border-radius: 50%;
+    animation: lookPointPulse 1.8s ease-out infinite;
+  }
+
+  .look-hotspot-core {
+    position: relative;
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+    animation: lookPointBlink 1.2s ease-in-out infinite;
+  }
+
+  .look-hotspot-active {
+    background: rgba(160, 32, 240, 0.32);
+    box-shadow: 0 0 0 4px rgba(160, 32, 240, 0.35), 0 0 18px rgba(160, 32, 240, 0.45);
+  }
+
+  .look-hotspot:hover {
+    background: rgba(160, 32, 240, 0.32);
+    box-shadow: 0 0 0 4px rgba(160, 32, 240, 0.35), 0 0 18px rgba(160, 32, 240, 0.45);
+  }
+
+  @keyframes lookPointPulse {
+    0% {
+      transform: scale(0.45);
+      opacity: 0.95;
+    }
+
+    100% {
+      transform: scale(1.85);
+      opacity: 0;
+    }
+  }
+
+  @keyframes lookPointBlink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.35;
+    }
   }
 
   /* menu  */

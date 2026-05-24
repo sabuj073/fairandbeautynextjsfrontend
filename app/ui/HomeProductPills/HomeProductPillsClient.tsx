@@ -20,7 +20,7 @@ export default function HomeProductPillsClient({ pills }: Props) {
   }
 
   return (
-    <section className="px-4 md:px-0 my-5 md:my-8">
+    <section className="home-section">
       <div className="mb-3 flex items-center justify-between gap-3">
         <h2 className="text-[18px] sm:text-[22px] font-semibold text-neutral-black">
           Glam Under Budget

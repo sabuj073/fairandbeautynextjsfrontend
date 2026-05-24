@@ -5,6 +5,15 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BASE_URL } from "@/app/config/api";
 
+const imageSrc = (src?: string | null) => {
+  if (!src) return "/fallback-image.png";
+  if (src.startsWith("http://") || src.startsWith("https://")) return src;
+  if (src.startsWith("/")) return `${BASE_URL}${src}`;
+  if (src.startsWith("uploads/")) return `${BASE_URL}/public/${src}`;
+  if (src.startsWith("public/") || src.startsWith("storage/")) return `${BASE_URL}/${src}`;
+  return `${BASE_URL}/public/${src}`;
+};
+
 export default function BannerItem({ item }: { item: any }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +37,7 @@ export default function BannerItem({ item }: { item: any }) {
   }, []);
 
   return (
-    <Link href={`/flash-deal/${item.slug}`}>
+    <Link href={item.url || "/"}>
       <div
         ref={ref}
         className={`offer_item overflow-hidden rounded-lg transition-transform duration-700 ease-in-out ${
@@ -36,10 +45,10 @@ export default function BannerItem({ item }: { item: any }) {
         }`}
       >
         <Image
-          src={`${BASE_URL}/public/${item.banner}`}
+          src={imageSrc(item.photo || item.banner)}
           width={365}
           height={220}
-          alt="offer"
+          alt="banner"
           className="object-contain w-full h-auto"
         />
       </div>

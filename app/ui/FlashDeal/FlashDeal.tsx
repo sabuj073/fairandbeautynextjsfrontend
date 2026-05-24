@@ -1,66 +1,56 @@
-import React, { Suspense } from "react";
+import React from "react";
 import Container from "../Container/Container";
-import TranslateHeading from "../TranslateHeading";
-import { API_BASE_URL, BASE_URL } from "@/app/config/api";
-import { CollectionSkelton } from "../skeletons";
-import Link from "next/link";
-import FlashDealItem from "./FlashDealItem"; // ✅ new
-import CustomTranslateHeading from "../CustomTranslateHeading";
+import { API_BASE_URL } from "@/app/config/api";
+import FlashDealClient from "./FlashDealClient";
 
-async function getFlashCollection(): Promise<any> {
+type RecommendationStyle = "old_style" | "style_1" | "style_2";
+
+async function getFlashCollection(): Promise<{
+  data: any[];
+  style: RecommendationStyle;
+  styleOneBackground: {
+    color: string;
+    image: string | null;
+    textColor: string;
+  };
+}> {
   const response = await fetch(`${API_BASE_URL}/flash-deals-recommendation`, {
     cache: "no-store",
   });
+
   if (!response.ok) {
-    return [];
+    return { data: [], style: "style_1", styleOneBackground: { color: "#ffffff", image: null, textColor: "#20232d" } };
   }
+
   const data: any = await response.json();
-  return data.data as any;
+
+  return {
+    data: data?.data ?? [],
+    style: data?.style === "style_2" ? "style_2" : data?.style === "old_style" ? "old_style" : "style_1",
+    styleOneBackground: {
+      color: data?.style_1_background?.color || "#ffffff",
+      image: data?.style_1_background?.image || null,
+      textColor: data?.style_1_background?.text_color || "#20232d",
+    },
+  };
 }
 
 export default async function FlashDeal() {
   const collection = await getFlashCollection();
+
+  if (!collection.data.length) {
+    return null;
+  }
+
   return (
-    <section className="pb-[18px] md:pb-[70px]">
+    <section className="home-section">
       <Container>
-        <div className="flex flex-col gap-6">
-          <CustomTranslateHeading title={'FAIR AND BEAUTY RECOMMENDATION'} translateKey={"authentic_recommendation"} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <Suspense fallback={<CollectionSkelton />}>
-              {collection.map((item: any) => (
-                <FlashDealItem key={item.id} item={item} />
-              ))}
-            </Suspense>
-          </div>
-        </div>
+        <FlashDealClient
+          items={collection.data}
+          style={collection.style}
+          styleOneBackground={collection.styleOneBackground}
+        />
       </Container>
     </section>
   );
 }
-
-// import ProductSlider from "@/app/ui/Product/ProductSlider";
-// import { API_BASE_URL } from "@/app/config/api";
-
-// async function getFlashCollection(): Promise<any> {
-//   const response = await fetch(`${API_BASE_URL}/flash-deals-recommendation`, {
-//     cache: "no-store",
-//   });
-//   if (!response.ok) {
-//     return [];
-//   }
-//   const data: any = await response.json();
-//   return data.data as any;
-// }
-
-// export default async function FlashDeal() {
-//   const collection = await getFlashCollection();
-
-//   return (
-//     <ProductSlider
-//       products={collection}
-//       view_link="recommendation"
-//       translateKey="authentic_recommendation"
-//       slide_button={false}
-//     />
-//   );
-// }

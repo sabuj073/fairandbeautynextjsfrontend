@@ -128,6 +128,11 @@ export async function getTopBrands(): Promise<any> {
     return response as any;
 }
 
+export async function getHomeBanner(position: number): Promise<any> {
+    const response = await fetchData<ApiResponse>(`${API_BASE_URL}/home-banners/${position}`, { revalidate: 0 });
+    return response as any;
+}
+
 /**
  * Fetches the offers  from the API.
  * 
@@ -146,4 +151,3 @@ export async function getBlogs(): Promise<any> {
     const response = await fetchData<ApiResponse>(`${API_BASE_URL}/blogs_home`, { revalidate: 0 });
     return response as any;
 }
-

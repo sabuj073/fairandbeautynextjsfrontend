@@ -10,7 +10,7 @@ export default async function Offer() {
 
   return (
     <>
-    <div className="container pb-[18px] md:pb-[70px] mx-auto px-4 sm:px-2 md:px-0 mt-4">
+    <div className="container home-section mx-auto">
       <div className="offer flex flex-col gap-6">
         <TranslateHeading translateKey="special_offers" />
         <div className="offer_item grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-4">

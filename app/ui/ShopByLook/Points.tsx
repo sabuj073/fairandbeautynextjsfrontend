@@ -1,18 +1,29 @@
 "use client"
 import { productStore } from '@/lib/hooks/useProductStore';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+
+const clampCoordinate = (value: any) => {
+    const coordinate = Number(value);
+    if (Number.isNaN(coordinate)) {
+        return 0;
+    }
+    return Math.max(0, Math.min(100, coordinate));
+}
 
 export default function Points({ data }: any) {
 
-    const { lookProduct, setLookProductLoading, setLookProduct } = productStore();
-    const [selectPoint, setSelectPoint] = useState<any>(data && data?.points && data?.points.length > 0 && data?.points[0]?.id || '')
+    const { setLookProductLoading, setLookProduct } = productStore();
+    const points = useMemo(() => data?.points ?? [], [data?.points]);
+    const [selectPoint, setSelectPoint] = useState<any>(points[0]?.id || '')
+
     useEffect(() => {
-        handlePoint(selectPoint)
+        if (selectPoint) {
+            handlePoint(selectPoint)
+        }
     }, [selectPoint])
 
     const handlePoint = async (item: any) => {
-        // setSelectPoint(item)
         setLookProductLoading(true)
         try {
             const response: any = await axios.post(
@@ -31,31 +42,23 @@ export default function Points({ data }: any) {
         <>
             {
                 data?.points && data?.points.map((item: any) => (
-                    <div key={item.id} className="hotspot" onClick={() => setSelectPoint(item.id)}
+                    <button
+                        key={item.id}
+                        type="button"
+                        aria-label="Select look point"
+                        aria-pressed={selectPoint === item.id}
+                        className={`look-hotspot ${selectPoint === item.id ? 'look-hotspot-active' : ''}`}
+                        onClick={() => setSelectPoint(item.id)}
                         style={
                             {
-                                position: 'absolute',
-                                left: item.x_coordinate + '%',
-                                top: item.y_coordinate + '%',
-                                width: `${selectPoint === item.id ? '15px' : '10px'}`,
-                                height: `${selectPoint === item.id ? '15px' : '10px'}`,
-                                backgroundColor: '#dcdce7',
-                                borderRadius: '50%',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center'
+                                left: clampCoordinate(item.x_coordinate) + '%',
+                                top: clampCoordinate(item.y_coordinate) + '%',
                             }
 
                         }
                     >
-                        <div style={{
-                            background: "#fff",
-                            width: `${selectPoint === item.id ? '10px' : '7px'}`,
-                            height: `${selectPoint === item.id ? '10px' : '7px'}`,
-                            borderRadius: `50%`
-
-                        }} className='small_point'></div>
-                    </div>
+                        <span className='look-hotspot-core'></span>
+                    </button>
                 ))
             }
         </>

@@ -78,7 +78,7 @@ export type CategoryFeatured = {
   icon: string;
   number_of_children: number;
   children?: CategoryFeatured[];
-  links: {
+  links?: {
     products: string;
     sub_categories: string;
   };

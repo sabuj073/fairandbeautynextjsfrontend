@@ -27,7 +27,7 @@ export default async function CustomerReview() {
     const reviews_home = await getReviews_home() as any;
 
     return (
-        <div className={clsx("pb-[18px] md:pb-[66px] w-full sm:px-2 md:px-0")}>
+        <div className={clsx("home-section")}>
                     <div className={clsx('arrival_section md:mx-0 mx-2 rounded-lg flex flex-col gap-[15px] sm:gap-6 py-[20px] md:py-[37px] md:px-[10px] sm:px-4')}>
                         <div className="flex section_heading text-center items-center justify-between">
                             <h2 className={clsx('ml-2 relative text-[18px] sm:text-[28px] xl:text-[32px] text-neutral-black max-w-max font-semibold uppercase gap-1 flex items-center justify-start flex-wrap')}>
