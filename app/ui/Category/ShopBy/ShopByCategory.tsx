@@ -8,33 +8,36 @@ import Heading from '../../Section/Heading'
 export default function ShopByCategory({title,data}:any) {
     return (
       
-            <div className='shop_by_section' >
+            <div className='shop_by_section mx-3 md:mx-0' >
                 <div className='mb-4'>
                 <Heading title={title}  />
                 </div>
                 <Carousel
                     opts={{
-                        align: "center",
+                        align: "start",
                         loop: false
                     }}
-                    className="w-full lg:px-4"
+                    className="w-full"
                 >
-                    <CarouselContent>
+                    <CarouselContent className="ml-0">
                         {data.map((itemChild: any, index: any) => (
-                            <CarouselItem key={index} className=" pl-4 lg:pl-4 basis-1/4 sm:basis-1/4 md:basis-1/5 xl:basis-1/5  ">
+                            <CarouselItem key={index} className="pl-2 basis-1/5 md:basis-1/6 xl:basis-[12.5%]">
                               
-                                            <Link href={`/category/${itemChild.slug}`} >
-                                                    <div className='w-[80px] h-[80px] md:w-[120px] md:h-[120px] lg:w-[140px] lg:h-[140px] xl:w-[204px] xl:h-[204px]  '>
+                                            <Link href={`/category/${itemChild.slug}`} className="block text-center">
+                                                    <div className='aspect-square w-full overflow-hidden rounded-lg bg-[#f6f0e8]'>
                                                         <Image
                                                             loading="lazy"
                                                             src={`${BASE_URL}/public/${itemChild?.icon}`}
                                                             width={204}
                                                             height={204}
                                                             alt={itemChild.name}
-                                                            className='object-contain transition-transform duration-300 ease-in-out transform group-hover:scale-110 mx-auto w-full '
+                                                            className='h-full w-full object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110'
                                                         />
 
                                                 </div>
+                                                <h3 className="mt-1 line-clamp-1 text-[10px] font-bold uppercase text-neutral-black md:text-sm">
+                                                    {itemChild.name}
+                                                </h3>
                                             </Link>
                                   
                             </CarouselItem>

@@ -59,7 +59,7 @@ export default function HomeProductPillsClient({ pills }: Props) {
       </div>
 
       {activePill.products?.length > 0 && (
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 sm:gap-4">
           {activePill.products.map((product) => (
             <ProductItem key={product.id} {...product} compact />
           ))}

@@ -35,7 +35,7 @@ export default async function ViewProduct({ query }: any) {
 
   return (
     <>
-      <div className="grid grid-cols-2 mx-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 pt-4 gap-2 lg:gap-3">
+      <div className="grid grid-cols-2 mx-1 md:mx-0 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 pt-4 gap-1 lg:gap-3">
         {result?.data?.length > 0 &&
           result.data.map((item: any) => (
             <ProductItem {...item} key={item.id} compact />

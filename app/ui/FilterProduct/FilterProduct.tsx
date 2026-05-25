@@ -44,14 +44,14 @@ export default async function FilterProduct({ query }: any) {
     return (
         <>
             {heading && (
-                <div className="mx-3 md:mx-0 pt-8 pb-4">
+                <div className="mx-1 md:mx-0 pt-8 pb-4">
                     <h2 className="text-lg font-semibold">
                         {heading} ({totalItems} {itemLabel})
                     </h2>
                 </div>
             )}
 
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 pt-4 gap-2 md:gap-3 mx-3 md:mx-0'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 pt-4 gap-1 md:gap-3 mx-1 md:mx-0'>
 
                 {
                     result.data.length > 0 && result.data.map((item: any) => (

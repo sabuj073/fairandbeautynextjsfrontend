@@ -118,7 +118,7 @@ export default function CustomHeadProductSlider({
 
     return (
         <div className={clsx("home-section", ContainerClassName)}>
-            <div className={clsx(`arrival_section bg-[#DFE8DE] md:mx-0 ${isHomepage ? 'mx-1' : 'mx-0'} rounded-lg flex flex-col gap-[15px] sm:gap-6 py-[20px] md:py-[37px] md:px-[10px] sm:px-4`, className)}>
+            <div className={clsx(`arrival_section bg-[#DFE8DE] mx-0 rounded-lg flex flex-col gap-[15px] sm:gap-6 py-[20px] md:py-[37px] md:px-[10px] sm:px-4`, className)}>
                 <div className='sm:hidden block'>
                     <CustomTranslateHeading title={title} translateKey={translateKey} />
                 </div>
@@ -135,7 +135,7 @@ export default function CustomHeadProductSlider({
                     )}
                 </div>
                 
-                <div className={`${isHomepage && 'px-1'}`}>
+                <div>
                     <Carousel
                     opts={{
                         align: 'center',
@@ -151,7 +151,7 @@ export default function CustomHeadProductSlider({
                             return (
                                 <CarouselItem 
                                     key={index} 
-                                    className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                                    className="pl-1 md:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                                 >
                                     <div className={clsx(
                                         "min-w-0 w-full transition-opacity duration-300", 

@@ -17,7 +17,7 @@ export default async function Concern({
 
     return (
         <div className="home-section">
-            <div className='concern_section md:mx-0 mx-2 rounded-lg flex flex-col gap-[15px] sm:gap-6 bg-[#DFE8DE] py-[20px] md:py-[37px] px-[0px] sm:px-4 '>
+            <div className='concern_section mx-0 rounded-lg flex flex-col gap-[15px] sm:gap-6 bg-[#DFE8DE] py-[20px] md:py-[37px] px-[0px] sm:px-4 '>
                 <TranslateHeading translateKey={translateKey} fallbackTitle={fallbackTitle}/>
                 <ConcernCategoryProduct category={category}/>
             </div>

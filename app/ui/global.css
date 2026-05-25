@@ -4,7 +4,16 @@
 
 @layer components {
   .home-section {
-    @apply w-full px-4 md:px-0 my-5 md:my-8;
+    @apply w-full my-5 md:my-8;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+
+  @media (min-width: 768px) {
+    .home-section {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 

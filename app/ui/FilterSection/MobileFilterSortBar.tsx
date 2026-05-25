@@ -14,7 +14,7 @@ const SORT_OPTIONS = [
   { value: "price_high_to_low", labelKey: "price_high_to_low" },
 ];
 
-export default function MobileFilterSortBar({ translate_data }: any) {
+export default function MobileFilterSortBar({ translate_data, inline = false, totalItems, itemLabel = "item" }: any) {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -45,11 +45,26 @@ export default function MobileFilterSortBar({ translate_data }: any) {
   return (
     <>
       {/* Fixed bottom bar - mobile only: white bg, less padding, light shadow, separator */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-[99999] bg-white flex items-center justify-center border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.06)] safe-area-pb">
+      <div
+        className={
+          inline
+            ? "md:hidden mx-3 my-5 grid grid-cols-[1fr_auto_auto] items-center border-y border-gray-200 bg-white"
+            : "md:hidden fixed bottom-0 left-0 right-0 z-[99999] bg-white flex items-center justify-center border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.06)] safe-area-pb"
+        }
+      >
+        {inline && (
+          <div className="py-4 pr-4 text-xl font-bold text-black">
+            {totalItems ?? 0} {itemLabel}
+          </div>
+        )}
         <button
           type="button"
           onClick={() => setSortPanelOpen((p) => !p)}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 border-r border-gray-200"
+          className={
+            inline
+              ? "flex items-center justify-center gap-1.5 border-l border-r border-gray-200 px-5 py-4"
+              : "flex-1 flex items-center justify-center gap-1.5 py-2.5 border-r border-gray-200"
+          }
         >
           <ArrowUpDown className="w-4 h-4 text-gray-700" />
           <span className="font-semibold uppercase text-xs text-gray-800">Sort</span>
@@ -57,7 +72,11 @@ export default function MobileFilterSortBar({ translate_data }: any) {
         <button
           type="button"
           onClick={() => setSidebarOpen(true)}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5"
+          className={
+            inline
+              ? "flex items-center justify-center gap-1.5 px-5 py-4"
+              : "flex-1 flex items-center justify-center gap-1.5 py-2.5"
+          }
         >
           <Filter className="w-4 h-4 text-gray-700" />
           <span className="font-semibold uppercase text-xs text-gray-800">Filter</span>

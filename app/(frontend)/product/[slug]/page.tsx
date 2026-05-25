@@ -38,6 +38,7 @@ import CouponDetails from "@/app/ui/Product/DeteilsPage/CouponDetails";
 import WishAdd from "@/app/ui/Product/WishAdd/WishAdd";
 import SkinAnalyzerEntryCard from "@/app/ui/SkinAnalyzer/SkinAnalyzerEntryCard";
 import RatingPill from "@/app/ui/Product/RatingPill";
+import TopValueCombos from "@/app/ui/TopValueCombos/TopValueCombos";
 
 const options = {
   loop: true,
@@ -410,6 +411,9 @@ const Page: NextPage<PageProps> = async ({ params }) => {
           </div>
         </div>
       </Container>
+      <div>
+        <TopValueCombos />
+      </div>
       {/* SimilarProduct product  */}
       <div>
         <SimilarProduct id={productDetails.id} />

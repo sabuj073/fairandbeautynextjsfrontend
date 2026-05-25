@@ -158,7 +158,7 @@ export default function ConcernCategoryProduct({
                 ? Array.from({ length: 4 }).map((_, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
+                      className="pl-1 md:pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
                     >
                       <div className="min-w-0 w-full">
                         <ProductSkeleton />
@@ -168,7 +168,7 @@ export default function ConcernCategoryProduct({
                 : getProductsToDisplay().map((product, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                      className="pl-1 md:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                     >
                       <div className="min-w-0 w-full">
                         <ProductItem {...product} />
@@ -197,7 +197,7 @@ export default function ConcernCategoryProduct({
                 ? Array.from({ length: 2 }).map((_, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
+                      className="pl-1 md:pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
                     >
                       <div className="min-w-0 w-full">
                         <ProductSkeleton />
@@ -207,7 +207,7 @@ export default function ConcernCategoryProduct({
                 : getProductsToDisplay().map((product, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                      className="pl-1 md:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                     >
                       <div className="min-w-0 w-full">
                         <ProductItem {...product} />
@@ -217,7 +217,7 @@ export default function ConcernCategoryProduct({
               
               {/* View All item for mobile */}
               <CarouselItem
-                className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                className="pl-1 md:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
               >
                 {categoryData && (
                   <a className="min-w-full" href={`/category/${categoryData.slug || categoryData.id}`}>

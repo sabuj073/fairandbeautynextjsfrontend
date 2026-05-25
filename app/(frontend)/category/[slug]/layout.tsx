@@ -116,43 +116,6 @@ export default async function RootLayout({
   return <Container>
     <div className="md:w-[91%] md:mx-auto">
       <Breadcrumb link={category.slug} name={category.name} />
-    {
-      banner && <div className="banner mb-5 md:pb-10   ">
-        <CustomImage width={1060} height={340} alt={category?.name} src={banner} />
-      </div>
-    }
-    {/* subcategory  */}
-    {/* <div className={`sub_category grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 xl:grid-cols-7 gap-3   ${subcategories.length >= 9 ? 'justify-between' : ''}  `}>
-      {
-        subcategories?.map((itemChild: any) => (
-
-          <div className="p-1 col-span-1">
-            <div className="tranding_item group pt-3 " >
-              <Link href={`/category/${itemChild.slug}`} >
-                <div className="cat_logo items-center justify-center flex flex-col gap-3  ">
-
-                  <div className='w-[100px] lg:w-[150px] h-[80px] lg:h-[120px] '>
-                    <Image
-                      src={`${BASE_URL}/public/${itemChild?.icon}`}
-                      width={100}
-                      height={100}
-                      alt={itemChild.name}
-                      className='object-contain transition-transform duration-300 ease-in-out transform group-hover:scale-110 mx-auto w-full '
-                    />
-                  </div>
-
-                  <h3 className='text-base text-neutral-black  group-hover:text-primary text-center uppercase duration-300 ease-in-out h-[25px] line-clamp-1 ' >{itemChild.name}</h3>
-                </div>
-              </Link>
-            </div>
-          </div>
-
-        ))
-      }
-
-
-
-    </div> */}
 
 {/* shop by start  */}
       {/* category  */}
@@ -160,6 +123,36 @@ export default async function RootLayout({
         shop_by_category.length > 0 && 
       <ShopByCategory  title={shop_by_category_tile} data={shop_by_category} />
       }
+    {
+      banner && <div className="banner mx-3 my-6 md:mx-0 md:mb-8 overflow-hidden rounded-xl">
+        <CustomImage width={1060} height={340} alt={category?.name} src={banner} className="w-full rounded-xl object-cover" />
+      </div>
+    }
+    {
+      subcategories?.length > 0 &&
+      <div className="sub_category mx-3 mb-6 md:mx-0 md:mb-8">
+        <div className="grid auto-cols-[72px] grid-flow-col grid-rows-2 gap-x-3 gap-y-4 overflow-x-auto pb-2 md:auto-cols-auto md:grid-flow-row md:grid-cols-6 md:grid-rows-none lg:grid-cols-8 xl:grid-cols-10">
+          {
+            subcategories.map((itemChild: any) => (
+              <Link href={`/category/${itemChild.slug}`} key={itemChild.id || itemChild.slug} className="group block text-center">
+                <div className="aspect-square w-full overflow-hidden rounded-lg bg-[#f6f0e8]">
+                  <Image
+                    src={`${BASE_URL}/public/${itemChild?.icon}`}
+                    width={160}
+                    height={160}
+                    alt={itemChild.name}
+                    className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mt-1 line-clamp-1 text-[10px] font-bold text-neutral-black duration-300 ease-in-out group-hover:text-primary md:text-sm">
+                  {itemChild.name}
+                </h3>
+              </Link>
+            ))
+          }
+        </div>
+      </div>
+    }
       {
         shop_by_brand.length > 0 && 
       <ShopByBrand  title={shop_by_brand_tile} data={shop_by_brand} />
@@ -190,6 +183,12 @@ export default async function RootLayout({
         <SortByFilter translate_data={translate_data} />
       </div>
     </div>
+    <MobileFilterSortBar
+      inline
+      totalItems={product_count}
+      itemLabel={translate_data?.item || "item"}
+      translate_data={translate_data}
+    />
     <div className="flex xl:gap-4 items-start ">
 
       <FilterSidebar discount_data={discount_data} translate_data={translate_data} category_id={category.id} minPrice={minPrice} maxPrice={maxPrice}
@@ -207,6 +206,5 @@ export default async function RootLayout({
     </div>
     </div>
 
-    <MobileFilterSortBar translate_data={translate_data} />
   </Container>
 }
