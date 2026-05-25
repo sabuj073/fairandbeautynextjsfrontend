@@ -196,7 +196,7 @@ export default function ConcernCategoryProduct({
       <div className="concern_product_area flex items-start gap-[80px]">
         <div className="concern_right flex w-full flex-1 flex-col md:px-0 px-3 gap-[15px] sm:gap-6 ">
           <Carousel 
-            opts={{ align: "center" }} 
+            opts={{ align: "start" }} 
             className="w-full"
             setApi={setCarouselApi}
           >
@@ -205,9 +205,11 @@ export default function ConcernCategoryProduct({
                 ? Array.from({ length: 4 }).map((_, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-0 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
+                      className="pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
                     >
-                      <ProductSkeleton />
+                      <div className="min-w-0 w-full">
+                        <ProductSkeleton />
+                      </div>
                     </CarouselItem>
                   ))
                 : products.map((product, index) => {
@@ -217,10 +219,10 @@ export default function ConcernCategoryProduct({
                     return (
                       <CarouselItem
                         key={index}
-                        className="pl-0 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                        className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                       >
                         <div className={`
-                          transition-opacity duration-300
+                          min-w-0 w-full transition-opacity duration-300
                           ${isLoaded ? "opacity-100" : "opacity-100"}
                         `}>
                           {shouldRender ? (

@@ -112,10 +112,12 @@ export default function ProductSlider({
                             return (
                                 <CarouselItem 
                                     key={index} 
-                                    className="pl-0 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                                    className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                                 >
                                     {shouldRender ? (
-                                        <ProductItem {...product} />
+                                        <div className="min-w-0 w-full">
+                                            <ProductItem {...product} />
+                                        </div>
                                     ) : (
                                         <div className="h-[300px] w-full"></div>
                                     )}

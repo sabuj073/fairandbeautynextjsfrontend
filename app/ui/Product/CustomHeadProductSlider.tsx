@@ -151,10 +151,10 @@ export default function CustomHeadProductSlider({
                             return (
                                 <CarouselItem 
                                     key={index} 
-                                    className="pl-0 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                                    className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                                 >
                                     <div className={clsx(
-                                        "transition-opacity duration-300", 
+                                        "min-w-0 w-full transition-opacity duration-300", 
                                         isLoaded ? "opacity-100" : "opacity-0"
                                     )}>
                                         {shouldRender ? (

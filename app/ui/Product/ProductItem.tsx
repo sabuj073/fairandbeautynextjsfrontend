@@ -668,12 +668,12 @@ const ProductItem: React.FC<Product & { compact?: boolean }> = ({
               )}
             </div> */}
              {/* Price */}
-              <div className="price flex min-w-0 items-center justify-start gap-2 whitespace-nowrap">
-                <div className={`${compact ? "text-[14px]" : "text-base sm:text-[20px]"} regular_price shrink-0 text-black font-bold`}>
+              <div className="price flex min-w-0 items-center justify-start gap-1.5 whitespace-nowrap">
+                <div className={`${compact ? "text-[13px]" : "text-[15px] sm:text-[18px]"} regular_price shrink-0 text-black font-bold`}>
                   {main_price}
                 </div>
                 <div
-                  style={{ color: "rgba(143, 143, 143, 1)", fontSize: compact ? "12px" : "14px" }}
+                  style={{ color: "rgba(143, 143, 143, 1)", fontSize: compact ? "11px" : "12px" }}
                   className="sale_price relative shrink-0 overflow-hidden text-ellipsis line-through font-semibold"
                 >
                   {stroked_price}
@@ -681,7 +681,7 @@ const ProductItem: React.FC<Product & { compact?: boolean }> = ({
                 {discount > 0 && (
                   <div
                     style={{ color: "rgba(16, 161, 0, 1)" }}
-                    className={`${compact ? "text-[10px]" : "text-[11px] sm:text-[12px]"} offer shrink-0 font-semibold leading-tight`}
+                    className={`${compact ? "text-[9px]" : "text-[10px] sm:text-[11px]"} offer min-w-max shrink-0 font-semibold leading-tight`}
                   >
                     <span>
                       {discount}

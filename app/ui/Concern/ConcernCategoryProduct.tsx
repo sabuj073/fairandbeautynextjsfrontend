@@ -148,7 +148,7 @@ export default function ConcernCategoryProduct({
         <div className="concern_right flex w-full flex-1 flex-col gap-[15px] sm:gap-6 ">
           {/* Desktop Carousel */}
           <Carousel 
-            opts={{ align: "center" }} 
+            opts={{ align: "start" }} 
             className="w-full hidden md:block"
             onMouseEnter={handleCarouselInteraction}
             onTouchStart={handleCarouselInteraction}
@@ -158,17 +158,21 @@ export default function ConcernCategoryProduct({
                 ? Array.from({ length: 4 }).map((_, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-0 lg:pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
+                      className="pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
                     >
-                      <ProductSkeleton />
+                      <div className="min-w-0 w-full">
+                        <ProductSkeleton />
+                      </div>
                     </CarouselItem>
                   ))
                 : getProductsToDisplay().map((product, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-0 lg:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                      className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                     >
-                      <ProductItem {...product} />
+                      <div className="min-w-0 w-full">
+                        <ProductItem {...product} />
+                      </div>
                     </CarouselItem>
                   ))}
             </CarouselContent>
@@ -184,7 +188,7 @@ export default function ConcernCategoryProduct({
 
           {/* Mobile Carousel */}
           <Carousel 
-            opts={{ align: "center" }} 
+            opts={{ align: "start" }} 
             className="w-full block md:hidden"
             onTouchStart={handleCarouselInteraction}
           >
@@ -193,23 +197,27 @@ export default function ConcernCategoryProduct({
                 ? Array.from({ length: 2 }).map((_, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-0 lg:pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
+                      className="pl-2 basis-[50%] sm:basis-1/3 md:basis-1/3 xl:basis-1/5"
                     >
-                      <ProductSkeleton />
+                      <div className="min-w-0 w-full">
+                        <ProductSkeleton />
+                      </div>
                     </CarouselItem>
                   ))
                 : getProductsToDisplay().map((product, index) => (
                     <CarouselItem
                       key={index}
-                      className="pl-0 lg:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                      className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
                     >
-                      <ProductItem {...product} />
+                      <div className="min-w-0 w-full">
+                        <ProductItem {...product} />
+                      </div>
                     </CarouselItem>
                   ))}
               
               {/* View All item for mobile */}
               <CarouselItem
-                className="pl-0 lg:pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
+                className="pl-2 basis-[50%] md:basis-[40%] lg:basis-1/3 xl:basis-1/4"
               >
                 {categoryData && (
                   <a className="min-w-full" href={`/category/${categoryData.slug || categoryData.id}`}>
