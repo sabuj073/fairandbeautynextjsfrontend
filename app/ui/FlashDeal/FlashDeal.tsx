@@ -35,7 +35,11 @@ async function getFlashCollection(): Promise<{
   };
 }
 
-export default async function FlashDeal() {
+type Props = {
+  styleOverride?: RecommendationStyle;
+};
+
+export default async function FlashDeal({ styleOverride }: Props = {}) {
   const collection = await getFlashCollection();
 
   if (!collection.data.length) {
@@ -47,7 +51,7 @@ export default async function FlashDeal() {
       <Container>
         <FlashDealClient
           items={collection.data}
-          style={collection.style}
+          style={styleOverride ?? collection.style}
           styleOneBackground={collection.styleOneBackground}
         />
       </Container>

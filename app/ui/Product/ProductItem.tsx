@@ -246,6 +246,19 @@ const ProductItem: React.FC<Product & { compact?: boolean }> = ({
   let rightTagCount = 0;
   if ((trending ?? 0) > 0) rightTagCount++;
   if ((pre_order ?? 0) > 0) rightTagCount++;
+  const claimedPercent = Number(deal_claimed_percentage) > 0
+    ? Math.min(Number(deal_claimed_percentage), 100)
+    : 50 + ((Number(id) || 0) % 36);
+  const firstVariant = Array.isArray(choice_options) &&
+    choice_options.length > 0 &&
+    choice_options[0] &&
+    Array.isArray(choice_options[0].options) &&
+    choice_options[0].options.length > 0
+      ? choice_options[0]
+      : null;
+  const soldLabel = items_sold_text
+    ? ((items_sold ?? 0) > 0 ? `${items_sold} ${items_sold_text}` : items_sold_text)
+    : ((items_sold ?? 0) > 0 ? `${items_sold} Sold` : "");
   // === Scroll Animation ===
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -655,20 +668,20 @@ const ProductItem: React.FC<Product & { compact?: boolean }> = ({
               )}
             </div> */}
              {/* Price */}
-              <div className="price flex items-center gap-1 justify-start">
-                <div className={`${compact ? "text-[14px]" : "text-base sm:text-[24px]"} regular_price text-black font-bold`}>
+              <div className="price flex min-w-0 items-center justify-start gap-2 whitespace-nowrap">
+                <div className={`${compact ? "text-[14px]" : "text-base sm:text-[20px]"} regular_price shrink-0 text-black font-bold`}>
                   {main_price}
                 </div>
                 <div
-                  style={{ color: "rgba(143, 143, 143, 1)", fontSize: compact ? "12px" : "16px" }}
-                  className="sale_price text-xs sm:text-sm relative line-through font-semibold pl-2"
+                  style={{ color: "rgba(143, 143, 143, 1)", fontSize: compact ? "12px" : "14px" }}
+                  className="sale_price relative shrink-0 overflow-hidden text-ellipsis line-through font-semibold"
                 >
                   {stroked_price}
                 </div>
                 {discount > 0 && (
                   <div
                     style={{ color: "rgba(16, 161, 0, 1)" }}
-                    className={`${compact ? "text-[10px]" : "text-[12px] sm:text-[18px]"} offer max-w-max font-semibold`}
+                    className={`${compact ? "text-[10px]" : "text-[11px] sm:text-[12px]"} offer shrink-0 font-semibold leading-tight`}
                   >
                     <span>
                       {discount}
@@ -693,20 +706,18 @@ const ProductItem: React.FC<Product & { compact?: boolean }> = ({
                 </div>
               )}
 
-              {(deal_claimed_percentage && deal_claimed_percentage > 0) && (
-                <div className="w-full mt-2">
+              <div className="w-full mt-2">
                   <div className="relative w-full h-[17px] rounded-[8.5px] bg-[#E2E2E2] overflow-hidden">
                     <div 
                       className="absolute top-0 left-0 h-full rounded-[8.5px] transition-all duration-300"
                       style={{
-                        width: `${Math.min(deal_claimed_percentage, 100)}%`,
+                        width: `${claimedPercent}%`,
                         background: 'linear-gradient(90deg, #FF0000 0%, #026B88 50.5%, #56C74A 100%)'
                       }}
                     />
                   </div>
-                  <span className="text-xs mt-1 block">Deal is {deal_claimed_percentage}% claimed</span>
+                  <span className="text-xs mt-1 block">Deal is {claimedPercent}% claimed</span>
                 </div>
-              )}
 
                 {((items_added_to_cart ?? 0) > 0 || items_added_to_cart_text) && (
                   <p
@@ -719,33 +730,30 @@ const ProductItem: React.FC<Product & { compact?: boolean }> = ({
                     }
                   </p>
                 )}
-                {((items_sold ?? 0) > 0 || items_sold_text) && (
-                  <div className="flex justify-between items-center gap-2">
+                {(firstVariant || soldLabel) && (
+                  <div className="flex items-center gap-2">
                     {/* Dynamic Variant Display */}
-                    {Array.isArray(choice_options) && choice_options.length > 0 && choice_options[0] && Array.isArray(choice_options[0].options) && choice_options[0].options.length > 0 && (
-                      <>
-                        <p className="text-xs font-bold flex items-center gap-1 flex-wrap">
+                    {firstVariant && (
+                        <p className="flex min-w-0 items-center gap-1 text-xs font-bold">
                           <span
-                            className="rounded-full text-xs px-2 py-0.5 font-semibold bg-gray-50"
+                            className="truncate rounded-full bg-gray-50 px-2 py-0.5 text-xs font-semibold"
                             style={{ border: "0.5px solid #00000026" }}
                           >
-                            {choice_options[0].options[0]}
+                            {firstVariant.options[0]}
                           </span>
-                          {choice_options[0].options.length > 1 && (
-                            <span className="text-gray-600 font-medium">
-                              +{choice_options[0].options.length - 1}
+                          {firstVariant.options.length > 1 && (
+                            <span className="font-medium text-gray-600">
+                              +{firstVariant.options.length - 1}
                             </span>
                           )}
                         </p>
-                        <span className="text-gray-300">|</span>
-                      </>
                     )}
-                    <p className="font-bold text-xs flex-shrink-0" style={{ color: "#FE4F49" }}>
-                      {items_sold_text ? 
-                        ((items_sold ?? 0) > 0 ? `${items_sold} ${items_sold_text}` : items_sold_text) :
-                        ((items_sold ?? 0) > 0 ? `${items_sold} Sold` : '')
-                      }
-                    </p>
+                    {firstVariant && soldLabel && <span className="h-4 w-px bg-gray-300" />}
+                    {soldLabel && (
+                      <p className="ml-auto flex-shrink-0 text-xs font-bold" style={{ color: "#FE4F49" }}>
+                        {soldLabel}
+                      </p>
+                    )}
                   </div>
                 )}
 

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BASE_URL } from "@/app/config/api";
@@ -44,10 +43,8 @@ export default function BannerItem({ item }: { item: any }) {
           isVisible ? "scale-100 opacity-100" : "scale-125 opacity-0"
         }`}
       >
-        <Image
+        <img
           src={imageSrc(item.photo || item.banner)}
-          width={365}
-          height={220}
           alt="banner"
           className="object-contain w-full h-auto"
         />

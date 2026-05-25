@@ -2,24 +2,21 @@
 import ArriVal from "@/app/ui/Arrival/Arrival";
 import Offer from "@/app/ui/Offer/Offer";
 import Trending from "@/app/ui/Trending/Trending";
+import ConcernMain from "../ui/ConcernMain/ConcernMain";
 import Concern from "@/app/ui/Concern/Concern";
 import CustomerReview from "@/app/ui/CustomerReview/CustomerReview";
 import ResonShop from "@/app/ui/ResonShop/ResonShop";
 import Ingredients from "@/app/ui/Ingredients/Ingredients";
 import Brand from "@/app/ui/Brand/Brand";
-import Blog from "@/app/ui/Blog/Blog";
 import BannerSliderWrapper from "@/app/ui/Banner/BannerSliderWrapper";
 import CategoryWrapper from "@/app/ui/Category/CategoryWrapper";
 import ShopByLook from "@/app/ui/ShopByLook/ShopByLook";
 import FlashDeal from "@/app/ui/FlashDeal/FlashDeal";
-import FooterSeo from "@/app/ui/FooterSeo/FooterSeo";
-import Script from 'next/script';
 import CategoryMobile from "../ui/CategoryMobile/CategoryMobile";
 // import { cookies } from "next/headers";
 // import { fetchData } from "@/lib/dataFetching";
 import { API_BASE_URL } from "../config/api";
 import TopHeader from "../ui/Header/TopHeader";
-import ConcernMain from "../ui/ConcernMain/ConcernMain";
 import HomepageScript from "./scripts/HomepageScript";
 import { getMenu } from "./scripts/getMenu";
 import BannerNew from "../ui/BannerNew/BannerNew";
@@ -27,11 +24,9 @@ import Featured from "../ui/Featured/Featured";
 import PreOrder from "../ui/PreOrder/PreOrder";
 import BestSelling from "../ui/BestSelling/BestSelling";
 import Serums from "../ui/Serums/Serums";
-import LastView from "../ui/LastViewed/LastView";
 import SkinAnalyzerEntryCard from "../ui/SkinAnalyzer/SkinAnalyzerEntryCard";
 import HomeProductPills from "../ui/HomeProductPills/HomeProductPills";
-import TopValueCombos from "../ui/TopValueCombos/TopValueCombos";
-import Recommendation from "../ui/Recommendation/Recommendation";
+import LastView from "../ui/LastViewed/LastView";
 
 // export async function getMenu(): Promise<any> {
 //   const lang = cookies().get('lang')?.value || 'en';
@@ -76,34 +71,37 @@ export default async function Page() {
       {show("top_header") && <TopHeader />}
       {show("category_wrapper") && <CategoryWrapper />}
       {show("offer") && <Offer />}
+      <BannerNew position={4} fullWidth />
+      {show("reason_shop") && <ResonShop />}
       {show("skin_analyzer") && (
         <SkinAnalyzerEntryCard className="home-section" />
       )}
-      {show("reason_shop") && <ResonShop />}
+      {show("flash_deal") && <FlashDeal styleOverride="style_2" />}
+      <ConcernMain />
       {show("home_product_pills") && <HomeProductPills />}
-      {show("top_value_combos") && <TopValueCombos />}
-      {show("trending") && <Trending />}
-      {show("banner_new_1") && <BannerNew position={1} />}
-      {show("featured") && <Featured />}
-      {show("pre_order") && <PreOrder />}
-      {show("best_selling") && <BestSelling />}
-      {show("arrival") && <ArriVal />}
-      {show("banner_new_2") && <BannerNew position={2} />}
-      {show("serums") && <Serums />}
-      {show("concern") && <Concern />}
-      {show("concern_main") && <ConcernMain />}
-      {show("recommendation") && <Recommendation />}
-      {show("flash_deal") && <FlashDeal />}
       {show("ingredients") && <Ingredients />}
-      {show("brand") && <Brand />}
+      <BannerNew position={5} fullWidth />
+      {show("flash_deal") && <FlashDeal styleOverride="style_1" />}
+      {show("best_selling") && <BestSelling />}
+      {show("top_value_combos") && <Concern fallbackTitle="SHOP BY COMBO" />}
+      {show("banner_new_6") && <BannerNew position={6} fullWidth />}
+      {show("trending") && <Trending />}
+      {show("featured") && <Featured />}
+      {show("banner_new_1") && <BannerNew position={1} />}
+      {show("arrival") && <ArriVal />}
+      {show("pre_order") && <PreOrder />}
+      {show("banner_new_2") && <BannerNew position={2} />}
+      {show("brand") && <Brand styleOverride="design_1" />}
+      {show("brand") && <Brand styleOverride="design_2" />}
+      {show("brand") && <Brand styleOverride="design_3" />}
+      {show("brand") && <Brand styleOverride="design_4" />}
+      {show("brand") && <Brand styleOverride="design_5" />}
+      {show("serums") && <Serums />}
       {show("shop_by_look") && <ShopByLook />}
-      {show("banner_new_3") && <BannerNew position={3} />}
-      {show("banner_new_4") && <BannerNew position={4} />}
-      {show("banner_new_5") && <BannerNew position={5} />}
-      {show("banner_new_6") && <BannerNew position={6} />}
+      {show("flash_deal") && <FlashDeal styleOverride="old_style" />}
       {show("customer_review") && <CustomerReview />}
-      {/* Blog section removed - link still works at /blog */}
       {show("last_view") && <LastView />}
+      {/* Blog section removed - link still works at /blog */}
 
     {/* <div className="hidden md:block">
 

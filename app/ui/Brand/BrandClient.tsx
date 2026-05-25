@@ -174,18 +174,24 @@ export default function BrandClient({ brands, style, backgrounds, title, subtitl
 
   if (style === "design_2") {
     return (
-      <section className="overflow-hidden rounded-[30px] px-4 py-8" style={backgroundStyle(bg)}>
+      <section className="overflow-hidden rounded-[30px] bg-[#7a0f58] px-4 py-8 text-white" style={{ ...backgroundStyle(bg), backgroundColor: bg?.color || "#7a0f58" }}>
         <div className="mx-auto max-w-6xl text-center text-white">
           <p className="text-sm uppercase tracking-[0.28em] opacity-80">{headingSubtitle}</p>
           <h2 className="mt-3 text-3xl font-semibold">{headingTitle}</h2>
         </div>
-        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-7 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-3">
           {brands.map((brand) => (
-            <Link key={brand.id} href={`/brand/${brand.slug}`} className="group rounded-[30px] border border-white/20 bg-white/10 px-4 py-6 text-center transition hover:-translate-y-1">
-              <div className="mx-auto mb-3 h-20 w-20 overflow-hidden rounded-full bg-white p-3">
+            <Link
+              key={brand.id}
+              href={`/brand/${brand.slug}`}
+              className="group min-w-[190px] max-w-[190px] snap-start overflow-hidden rounded-[18px] border border-white/20 bg-white text-center shadow-sm transition hover:-translate-y-1 sm:min-w-[230px] sm:max-w-[230px] lg:min-w-[260px] lg:max-w-[260px]"
+            >
+              <div className="aspect-square w-full overflow-hidden bg-[#f7f7f7] p-4">
                 <img src={imageSrc(brand.logo)} alt={brand.name} className="h-full w-full object-contain" />
               </div>
-              <p className="text-sm font-semibold text-white">{brand.name}</p>
+              <div className="px-3 py-3">
+                <p className="line-clamp-2 min-h-[40px] text-base font-semibold leading-tight text-slate-900">{brand.name}</p>
+              </div>
             </Link>
           ))}
         </div>
@@ -195,24 +201,24 @@ export default function BrandClient({ brands, style, backgrounds, title, subtitl
 
   if (style === "design_3") {
     return (
-      <section className="overflow-hidden rounded-[30px] bg-white px-4 py-8" style={backgroundStyle(bg)}>
+      <section className="overflow-hidden rounded-[22px] bg-white px-4 py-8" style={backgroundStyle(bg)}>
         <div className="mx-auto max-w-6xl text-center">
           <p className="text-sm uppercase tracking-[0.28em] text-[#7a2d16]">{headingSubtitle}</p>
           <h2 className="mt-3 text-3xl font-semibold text-[#7a2d16]">{headingTitle}</h2>
         </div>
-        <div className="mt-7 grid gap-4 md:grid-cols-3">
+        <div className="mt-7 grid auto-cols-[170px] grid-flow-col grid-rows-2 gap-4 overflow-x-auto pb-3 sm:auto-cols-[210px] lg:auto-cols-[240px]">
           {brands.map((brand) => (
             <Link
               key={brand.id}
               href={`/brand/${brand.slug}`}
-              className="group overflow-hidden rounded-[30px] border border-gray-200 bg-white p-6 text-center transition hover:-translate-y-1"
+              className="group snap-start overflow-hidden rounded-[14px] bg-white text-center transition hover:-translate-y-1"
             >
-              <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full bg-[#f7f7f7] p-3">
+              <div className="aspect-[4/5] w-full overflow-hidden rounded-[14px] border border-[#f0d88a] bg-[#f7f7f7] p-3">
                 <img src={imageSrc(brand.logo)} alt={brand.name} className="h-full w-full object-contain" />
               </div>
-              <div className="space-y-2">
-                <p className="text-base font-semibold text-slate-900">{brand.name}</p>
-                <span className="text-sm text-gray-500">Up To {brand.discount ?? 0}% Off</span>
+              <div className="px-2 pt-2">
+                <p className="line-clamp-1 text-base font-medium leading-tight text-slate-800">{brand.name}</p>
+                <span className="text-base font-semibold text-slate-950">Min. {brand.discount ?? 0}% Off</span>
               </div>
             </Link>
           ))}
@@ -227,41 +233,36 @@ export default function BrandClient({ brands, style, backgrounds, title, subtitl
         <div className="mx-auto max-w-6xl">
           <p className="text-sm uppercase tracking-[0.28em] text-white/80">{headingSubtitle}</p>
           <h2 className="mt-3 text-3xl font-semibold">{headingTitle}</h2>
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            {heroBrands.slice(0, 3).map((brand) => (
+          <div className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2">
+            {brands.map((brand) => (
               <button
                 key={brand.id}
                 type="button"
                 onClick={() => setActiveBrandId(brand.id)}
-                className={`flex items-center justify-center rounded-3xl border border-white/20 bg-white/10 p-4 transition ${brand.id === activeBrandId ? "border-white bg-white/20" : "hover:border-white/40"}`}
+                className={`min-w-max snap-start rounded-full border px-5 py-2 text-sm font-semibold transition ${
+                  brand.id === activeBrandId
+                    ? "border-white bg-white text-slate-950"
+                    : "border-white/25 bg-white/10 text-white hover:border-white/50"
+                }`}
               >
-                <img src={imageSrc(brand.logo)} alt={brand.name} className="h-12 w-12 object-contain" />
+                {brand.name}
               </button>
             ))}
           </div>
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            <Link href={`/brand/${activeBrand.slug}`} className="rounded-[30px] bg-white p-6 text-slate-900 shadow-lg">
-              <div className="h-60 rounded-[24px] bg-[#f5f7fb] p-5">
-                <img src={imageSrc(activeBrand.logo)} alt={activeBrand.name} className="h-full w-full object-contain" />
+          <div className="mt-8">
+            {activeBrand.products?.length ? (
+              <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3">
+                {activeBrand.products.map((product) => (
+                  <div key={product.id} className="min-w-[180px] max-w-[180px] snap-start sm:min-w-[220px] sm:max-w-[220px] lg:min-w-[250px] lg:max-w-[250px]">
+                    <ProductCard product={product} />
+                  </div>
+                ))}
               </div>
-              <div className="mt-4">
-                <h3 className="text-xl font-semibold">{activeBrand.name}</h3>
-                <p className="mt-2 text-sm text-slate-600">Up To {activeBrand.discount ?? 0}% Off</p>
+            ) : (
+              <div className="rounded-3xl border border-dashed border-white/40 bg-white/10 p-8 text-center text-sm text-white/80">
+                No products available for this brand yet.
               </div>
-            </Link>
-            <div className="lg:col-span-2">
-              {activeBrand.products?.length ? (
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {activeBrand.products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              ) : (
-                <div className="rounded-3xl border border-dashed border-white/40 bg-white/10 p-8 text-center text-sm text-white/80">
-                  No products available for this brand yet.
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -270,22 +271,25 @@ export default function BrandClient({ brands, style, backgrounds, title, subtitl
 
   if (style === "design_5") {
     return (
-      <section className="overflow-hidden rounded-[30px] bg-white px-4 py-8" style={backgroundStyle(bg)}>
+      <section className="overflow-hidden bg-white px-4 py-8" style={backgroundStyle(bg)}>
         <div className="mx-auto max-w-6xl text-center">
-          <p className="text-sm uppercase tracking-[0.28em] text-slate-600">{headingSubtitle}</p>
-          <h2 className="mt-3 text-3xl font-semibold text-slate-900">{headingTitle}</h2>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#254c26]">{headingSubtitle}</p>
+          <h2 className="mt-3 font-serif text-3xl font-medium text-[#254c26]">{headingTitle}</h2>
         </div>
-        <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto border-t border-b border-slate-200 py-1">
           {brands.map((brand) => (
             <Link
               key={brand.id}
               href={`/brand/${brand.slug}`}
-              className="group overflow-hidden rounded-[30px] border border-gray-200 bg-white p-6 text-center transition hover:-translate-y-1"
+              className="group min-w-[165px] max-w-[165px] snap-start overflow-hidden rounded-[12px] border border-slate-200 bg-white text-center transition hover:-translate-y-1 sm:min-w-[210px] sm:max-w-[210px] lg:min-w-[245px] lg:max-w-[245px]"
             >
-              <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full bg-[#f7f7f7] p-3">
+              <div className="aspect-[4/5] w-full overflow-hidden bg-[#f7f7f7] p-4">
                 <img src={imageSrc(brand.logo)} alt={brand.name} className="h-full w-full object-contain" />
               </div>
-              <p className="text-sm font-semibold text-slate-900">{brand.name}</p>
+              <div className="border-t border-slate-200 px-3 py-3">
+                <p className="line-clamp-1 text-base font-bold uppercase text-slate-950">{brand.name}</p>
+                <p className="mt-1 line-clamp-1 text-sm uppercase text-slate-500">Up To {brand.discount ?? 0}% Off</p>
+              </div>
             </Link>
           ))}
         </div>

@@ -7,6 +7,11 @@ import OfferItem from "./OfferItem"; // NEW Client Component
 
 export default async function Offer() {
   const brands = await getOffer();
+  const offers = brands?.data ?? [];
+
+  if (!offers.length) {
+    return null;
+  }
 
   return (
     <>
@@ -14,7 +19,7 @@ export default async function Offer() {
       <div className="offer flex flex-col gap-6">
         <TranslateHeading translateKey="special_offers" />
         <div className="offer_item grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-4">
-          {brands?.data?.map((item: any) => (
+          {offers.map((item: any) => (
             <OfferItem key={item.id} item={item} />
           ))}
         </div>
